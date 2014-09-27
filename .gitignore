@@ -1,0 +1,9 @@
+.idea
+.DS_Store
+config.py
+test_config.py
+migrations/.yoyo-migrate
+*.pyc
+app/static/.webassets-cache
+app/static/min
+
