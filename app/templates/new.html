@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/inner.css') }}"
+      xmlns="http://www.w3.org/1999/html"/>
+{% endblock %}
+
+{% block content %}
+<div class="col-lg-16 spacer hide" id="generatorContainer">
+    <div id="playerContainer"></div>
+    <form class="form-inline generatorForm" method="post" action="{{ url_for('playlist') }}">
+        <label for="length">Tracks in playlist</label>
+        <select id="length" name="length" class="form-control">
+            {% for i in [10,15,20] %}
+                <option value="{{ i }}">{{ i }}</option>
+            {% endfor %}
+        </select>
+        <input type="hidden" name="track_id">
+        <button type="submit" class="btn btn-success">Generate</button>
+    </form>
+</div>
+
+<div class="col-lg-16">
+    <p>Choose track</p>
+    {% for track in tracks %}
+        <p>
+            <form class="selectTrackForm" method="post">
+                <input type="hidden" name="title" value="{{ track.title }}">
+                <input type="hidden" name="id" value="{{ track.id }}">
+                <input type="submit" class="btn btn-primary" name="submit" value="{{ track.title }}">
+            </form>
+        </p>
+    {% endfor %}
+</div>
+{% endblock %}

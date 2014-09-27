@@ -1,56 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>SmartPlaylist</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
-    <!-- ПОДДЕРЖКА HTML5 ДЛЯ IE -->
-    <!--[if IE]>
-        <script src="{{ url_for('static', filename='js/plugins/html5.js') }}"></script>
-    <![endif]-->
-</head>
-<body>
-    <div class="site-wrapper">
-      <div class="site-wrapper-inner">
-        <div class="cover-container">
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">SmartPlaylist</h3>
-              <ul class="nav masthead-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
-            </div>
-          </div>
+{% extends "layout.html" %}
 
-          <div class="inner cover">
-              <form class="form-signin" role="form">
-                <h1 class="cover-heading">Super smart playlist generator!</h1>
-                <p class="lead">Place here track title to start</p>
-                <p class="lead">
-                  <input type="text" class="form-control" placeholder="Track title" required="" autofocus="">
-                </p>
-                <p class="lead">
-                  <button class="btn btn-lg btn-primary" type="submit">Proceed</button>
-                </p>
-              </form>
-          </div>
-
-          <div class="mastfoot">
-            <div class="inner">
-              <p>&copy; SmartPlaylist 2014</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script type="text/javascript" src="{{ url_for('static', filename='js/source/jquery.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/source/bootstrap.min.js') }}"></script>
-  </body>
-</html>
+{% block content %}
+<form class="form-signin" role="form" action="{{ url_for('new') }}" method="POST">
+    <h1 class="cover-heading">Super smart playlist generator!</h1>
+    <p class="lead">Place here track title to start</p>
+    <p class="lead">
+        <input type="text" class="form-control" placeholder="Track title" required="" autofocus="">
+    </p>
+    <p class="lead">
+        <button class="btn btn-lg btn-primary" type="submit">Proceed</button>
+    </p>
+</form>
+{% endblock %}

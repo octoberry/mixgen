@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SmartPlaylist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}" />
+    {% block styles %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+    {% endblock %}
+    <!-- ПОДДЕРЖКА HTML5 ДЛЯ IE -->
+    <!--[if IE]>
+        <script src="{{ url_for('static', filename='js/plugins/html5.js') }}"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">SmartPlaylist</h3>
+              <ul class="nav masthead-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="inner cover">
+              {% block content %}
+              {% endblock %}
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>&copy; SmartPlaylist 2014</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS Includes -->
+    <script type="text/javascript">
+        var GLOBAL = GLOBAL || {};
+        GLOBAL.AJAX_TRACK_URL = '/player';
+    </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/source/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/source/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
