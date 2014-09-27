@@ -30,8 +30,8 @@ def player():
 
 @app.route('/playlist', methods=['POST'])
 def playlist():
-    track_id = request.form['track_id']
-    length = request.form['length']
+    track_id = int(request.form['track_id'])
+    length = int(request.form['length'])
     plist = smart.generate_playlist(track_id, length)
     for item in plist:
         videos = youtube_search(query=item['title'], max_results=1)
