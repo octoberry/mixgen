@@ -25,7 +25,7 @@ def find_tracks(search, limit=20):
         if t:
             cnt = db.music_section.find({'track_id': t['id']}).count()
             if cnt:
-                items.append({'track_id': t['id'], 'title': '%s %s' % (s['artist'], s['song']), 'count': cnt})
+                items.append({'track_id': t['id'], 'title': '%s - %s' % (s['artist'], s['song']), 'count': cnt})
                 if len(items) >= limit:
                     break
 
@@ -45,7 +45,7 @@ def generate_playlist(track_id, limit=20):
         t = db.music_track.find_one({'id': x['_id']})
         s = db.all_songs.find_one({'artist_id': t['artist_id'], 'song_id': t['song_id']})
         if s:
-            plist.append({'title': '%s %s' % (s['artist'], s['song']), 'count': x['cnt'], 'position': x['pos']})
+            plist.append({'title': '%s - %s' % (s['artist'], s['song']), 'count': x['cnt'], 'position': x['pos']})
 
     return plist
 
