@@ -24,13 +24,15 @@ def player():
     track_id = request.form['track_id']
     videos = youtube_search(query=track_title, max_results=1)
     if videos:
-        videos[0]['yt_id'] = track_id
+        videos[0]['yt_id'] = videos[0]['id']
+        videos[0]['track_id'] = track_id
         return json.dumps(videos[0])
 
 @app.route('/playlist', methods=['POST'])
 def playlist():
     track_id = request.form['track_id']
-    plist = smart.generate_playlist(track_id)
+    length = request.form['length']
+    plist = smart.generate_playlist(track_id, length)
     for item in plist:
         videos = youtube_search(query=item['title'], max_results=1)
         if videos:

@@ -18,9 +18,6 @@ def youtube_search(query, max_results):
         type='video'
     ).execute()
 
-    print query
-    print search_response
-
     videos = []
 
     for search_result in search_response.get("items", []):
