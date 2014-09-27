@@ -15,7 +15,7 @@ $(document).ready(function () {
             data: $form.serialize(),
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
-                player.html('<iframe width="560" height="315" src="//www.youtube.com/embed/'+data.id+'" frameborder="0" allowfullscreen></iframe>');
+                player.html('<iframe width="560" height="315" src="//www.youtube.com/embed/'+data.yt_id+'" frameborder="0" allowfullscreen></iframe>');
                 generatorForm.find('input[name="track_id"]').val(data.track_id);
                 generator.removeClass('hide');
             },
