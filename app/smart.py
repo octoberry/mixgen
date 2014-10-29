@@ -13,7 +13,7 @@ def to_list(x):
 
 def find_tracks(search, limit=20):
     terms = search.split()
-    search = ' '.join(['"%s"' % x for x in to_list(terms)]) + ' -remix'
+    search = ' '.join(['%s' % x for x in to_list(terms)])
     songs = db.all_songs.find(
         {'$text': {'$search': search}},
         {'score': {'$meta': 'textScore'}}
