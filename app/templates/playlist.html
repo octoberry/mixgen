@@ -3,16 +3,33 @@
 {% block styles %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/inner.css') }}"
       xmlns="http://www.w3.org/1999/html"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ytv.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/player.css') }}" />
+<style type="text/css">
+    body{
+        margin: 0;
+        padding: 0;
+    }
+</style>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/ytv.js') }}"></script>
+<script>
+    window.onload = function(){
+        window.controller = new YTV('player', {
+            user: '_f9byEhW3TnDgkjkDo6l8A',
+            data: '{{ '|'.join(yt_ids) }}',
+            accent: 'yellow',
+            chainVideos: true
+        });
+    };
+</script>
 {% endblock %}
 
 {% block content %}
 <div class="col-lg-16">
     <p>Playlist</p>
-    {% for track in playlist %}
-        <p>
-            <h2>{{ track.title }}</h2>
-            <iframe width="530" height="50" src="//www.youtube.com/embed/{{ track.yt_id }}" frameborder="0"></iframe>
-        </p>
-    {% endfor %}
+    <div id="player" style="height: 500px"></div>
 </div>
 {% endblock %}
