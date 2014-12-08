@@ -37,4 +37,4 @@ def playlist():
         videos = youtube_search(query=item['title'], max_results=1)
         if videos:
             item['yt_id'] = videos[0]['id']
-    return render_template('playlist.html', playlist=plist, yt_ids=[t['yt_id'] for t in plist])
+    return render_template('playlist.html', playlist=plist, yt_ids=[t['yt_id'] for t in plist if t.get('yt_id')])
