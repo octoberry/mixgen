@@ -11,9 +11,11 @@ db = client.mixcloud
 def to_list(x):
     return [x] if not isinstance(x, list) else x
 
-def find_tracks(search, limit=20):
+def find_tracks(search, limit=20, exclude_remixes=False):
     terms = search.split()
     search = ' '.join(['%s' % x for x in to_list(terms)])
+    if exclude_remixes:
+        search += ' -remix'
     songs = db.all_songs.find(
         {'$text': {'$search': search}},
         {'score': {'$meta': 'textScore'}}

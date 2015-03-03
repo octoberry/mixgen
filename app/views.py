@@ -1,7 +1,8 @@
 # coding=utf-8
 import json
 from flask import render_template, request
-from app import smart
+from pony.orm import db_session
+from app import smart_pg as smart
 from app.server import app
 from app.youtube import youtube_search
 
@@ -12,6 +13,7 @@ def index():
 
 
 @app.route('/new', methods=['POST', 'GET'])
+@db_session
 def new():
     track_title = request.form['title']
     tracks = smart.find_tracks(track_title)
@@ -29,8 +31,9 @@ def player():
         return json.dumps(videos[0])
 
 @app.route('/playlist', methods=['POST'])
+@db_session
 def playlist():
-    track_id = int(request.form['track_id'])
+    track_id = request.form['track_id']
     length = int(request.form['length'])
     plist = smart.generate_playlist(track_id, length)
     for item in plist:
