@@ -20,7 +20,7 @@ def find_tracks(search, limit=20, exclude_remixes=False):
     for row in res:
         tracks.append({
             'track_id': '%s:%s' % (row.artist_id, row.song_id),
-            'title': row.title,
+            'title': row.title.decode('utf-8'),
             'count': row.cnt
         })
     return tracks
@@ -39,7 +39,7 @@ def generate_playlist(track_id, length=20):
     plist = []
     for row in res:
         plist.append({
-            'title': row.title,
+            'title': row.title.decode('utf-8'),
             'count': row.cnt,
             'position': float(row.pos)
         })
